@@ -14,7 +14,7 @@ void Storage::remove(const std::string& item, int count){
     }
 
     if(storage.find(item) == storage.end()){
-        throw std::runtime_error("error: No such item");
+        throw std::runtime_error("No such item");
     }
 
     if(storage[item] < count) {
@@ -33,5 +33,5 @@ void Storage::showAll(){
     for(auto it = storage.begin(); it != storage.end(); ++it){
         std::cout << std::left << it->first << " : " << it->second << std::endl;
     }
-    std::cout << std::endl;
+    
 }
