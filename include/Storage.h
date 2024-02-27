@@ -12,7 +12,7 @@ public:
 
     void remove(const std::string& item, int count);
 
-    bool transfer(Storage& to, std::string& item, int count);
+    void transfer(Storage& to, std::string& item, int count);
 
     void showAll();
 };

@@ -9,39 +9,46 @@ int main(int, char**){
    
     Storage basket;
     Storage shop;
-    
-    std::cout << "Fill out the store database. Type 'stop' to finish. " << std::endl;
-    
+
     std::string item;
     int count;
+    std::string ans;
+        
+    std::cout << "Fill the store database with default values? y/n" << std::endl;
+    std::cin >> ans;
+    
+    if(ans == "y"){
+        shop.add("hleb", 10);
+        shop.add("moloko", 15);
+        shop.add("kolbasa", 5);
+    } else {
+        std::cout << "Fill out the store database. Type 'stop' to finish. " << std::endl;
+        
+        do{
+            std::cout << "Enter the product article: ";
+            std::cin >> item;
+            if(item != "stop"){
+                std::cout << "Enter the count of products: ";
+                std::cin >> count;
+            if(std::cin.fail()) {
+                    std::cin.clear();
+                    std::string str;
+                    std::getline(std::cin, str);
+                    std::cout << "Not a number" << std::endl;
+                    continue;
+                }
+                try{
+                    shop.add(item, count);
+                } catch(const std::invalid_argument& x){
+                    std::cerr << x.what() << std::endl;
+                } catch(...){
+                    std::cerr << "Some kind of exception has happend..." << std::endl;
+                }
+            }  
+        }while(item != "stop");
+    }
 
     
-    do{
-        std::cout << "Enter the product article: ";
-        std::cin >> item;
-        if(item != "stop"){
-            std::cout << "Enter the count of products: ";
-            std::cin >> count;
-           if(std::cin.fail()) {
-                std::cin.clear();
-                std::string str;
-                std::getline(std::cin, str);
-                std::cout << "Not a number" << std::endl;
-                continue;
-            }
-            try{
-                
-                shop.add(item, count);
-            } catch(const std::invalid_argument& x){
-                std::cerr << x.what() << std::endl;
-            } catch(...){
-                std::cerr << "Some kind of exception has happend..." << std::endl;
-            }
-        }  
-    }while(item != "stop");
-
-
-    std::string ans;
     
     while(true){
         std::cout << std::endl << "Сhoose an action with basket: add remove exit >>";

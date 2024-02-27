@@ -24,7 +24,7 @@ void Storage::remove(const std::string& item, int count){
     storage[item] -= count;
 }
 
-bool Storage::transfer(Storage& to, std::string& item, int count){
+void Storage::transfer(Storage& to, std::string& item, int count){
     remove(item,count);// если удаление не удалось, то функция кинет исключение и товар не добавится.
     to.add(item, count);
 }
@@ -32,6 +32,5 @@ bool Storage::transfer(Storage& to, std::string& item, int count){
 void Storage::showAll(){
     for(auto it = storage.begin(); it != storage.end(); ++it){
         std::cout << std::left << it->first << " : " << it->second << std::endl;
-    }
-    
+    } 
 }
